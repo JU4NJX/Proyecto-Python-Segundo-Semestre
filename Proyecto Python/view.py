@@ -1,5 +1,6 @@
 import logic
 import sys
+from tabulate import tabulate
 
 def new_logic():
     return logic.new_logic()
@@ -7,22 +8,36 @@ def new_logic():
 def print_menu():
     print("Bienvenido")
     print("0- Cargar información")
-    print("1- Ejecutar Top5 Mejores Tiradores")
-    print("2- Ejecutar Top5 Mejores Defensores")
-    print("3- Ejecutar Mejor Rango de Tiro por Jugador")
-    print("4- Salir")
+    print("1- Ejecutar Top1 Mejores Tiradores")
+    print("2- Ejecutar Top1 Mejores Defensores")
+    print("3- Ejecutar Mejor Distancia de Tiro (General)")
+    print("4- Ejecutar Mejor Distancia de Tiro (Por jugador)")
+    print("5- Salir")
 
-def best_shooters ():
-    pass
-def best_defender ():
-    pass
-def best_shoot_range ():
-    pass
+def best_shooters(control):
+    respuesta = logic.best_shooters(control)
+    print(tabulate([respuesta], headers=["Tirador", "Numero Tiros"], tablefmt="grid"))
+
+def best_defender(control):
+    respuesta = logic.best_defender(control)
+    print(tabulate([respuesta], headers=["Defensa", "Numero Tiros Defendidos"], tablefmt="grid"))
+
+def best_shoot_range(control):
+    respuesta = logic.best_shoot_range(control)
+    print(tabulate([respuesta], headers=["Distancia (Metros)", "Numero Tiros"], tablefmt="grid"))
+
+def best_shoot_range_player(control):
+    respuesta = logic.best_shoot_range_player(control)
+    filas = []
+    for jugador, (distancia, tiros) in respuesta.items():
+        filas.append([jugador, distancia, tiros])
+    print(tabulate(filas, headers=["Tirador", "Distancia (Metros)", "Numero Tiros"], tablefmt="grid"))
+
 
 control = new_logic()
 
 def main():
-
+    print("asdadsa")
     working = True
     while working:
         print_menu()
@@ -31,14 +46,18 @@ def main():
             print("Cargando información de los archivos ....\n")
             data = load_data(control)
         elif int(inputs) == 1:
-            print_best_shooters(control)
-
+            best_shooters(control)
+            
         elif int(inputs) == 2:
-            print_best_defender(control)
+            best_defender(control)
 
         elif int(inputs) == 3:
-            print_best_shoot_range(control)
+            best_shoot_range(control)
+            
         elif int(inputs) == 4:
+            best_shoot_range_player(control)
+            
+        elif int(inputs) == 5:
             working = False
             print("\nGracias por utilizar el programa") 
         else:
@@ -47,6 +66,7 @@ def main():
     
 def load_data(control):
     
-    logic.load_data(control, "shot_logs.csv")
+    logic.carga_datos(control, "shot_logs.csv")
     print("Datos cargados exitosamente")
-    print("Total de taxis cargados:", len(control))
+    print("Total de información cargada:", len(control))
+    

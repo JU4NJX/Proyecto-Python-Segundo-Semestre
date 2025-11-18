@@ -23,9 +23,14 @@ def print_menu():
     print("0- Cargar información")
     print("1- Ejecutar Mejores Tiradores")
     print("2- Ejecutar Mejores Defensores")
-    print("3- Ejecutar Mejor Distancia de Tiro (General)")
-    print("4- Ejecutar Mejor Distancia de Tiro (Por jugador)")
-    print("5- Salir")
+    print("3- Ejecutar Mejor Distancia de Tiro (General)")    
+    print("4- Ejecutar Mejor Distancia de Tiro (Por jugador)")    
+    print("5- Ingresar Nombre del jugador")
+    print("6- cantidad de aciertos")
+    print("7- cantidad de errados")
+    print("8- Ejecutar Mejor Distancia de Tiro del jugador")
+    print("9- Volver al menu principal")
+    print("10- Salir")
 
 
 def best_shooters(control):
@@ -84,14 +89,40 @@ def best_shoot_range_player(control):
 # Creamos el catálogo global del programa (estructura principal de datos)
 control = new_logic()
 
+def validar_jugador(control, nombre_jugador):
+    """ 
+    """
+    validar= logic.validar_jugador(control,nombre_jugador)
+
+    return validar
+
+def cantidad_tiros(control, nombre_jugador, resultado_tiro):
+    """
+    """
+    cantidad = logic.cantidad_tiros(control,nombre_jugador, resultado_tiro)
+    if resultado_tiro=="made":
+        print(f"La cantidad de tiros acertados del jugador, {nombre_jugador} fue de {cantidad}")
+    else: 
+        print(f"La cantidad de tiros errados del jugador, {nombre_jugador} fue de {cantidad}")
+    
+def mejor_distancia_jugador(control,nombre_jugador):
+    """
+    
+    """
+    respuesta = logic.mejor_distancia_jugador(control,nombre_jugador)
+    print(f"La mejor distancia de tiro para el jugador {nombre_jugador} es de {respuesta}")    
+        
+    
+    
 
 def main():
     """
     Función principal del programa.
     Muestra el menú y ejecuta las acciones según la opción elegida por el usuario.
     """
-    print("Programa de Análisis de Tiros NBA")
+    print("Programa de Análisis de Tiros NBA") 
     working = True
+    nombre_jugador = ""
 
     while working:
         print_menu()
@@ -117,9 +148,29 @@ def main():
         # Opción 4: mejor distancia por jugador
         elif int(inputs) == 4:
             best_shoot_range_player(control)
-
-        # Opción 5: salir
+            
+        # Opción 5: Nombre Jugador
         elif int(inputs) == 5:
+            nombre_jugador = input('Ingrese el Nombre del jugador\n')
+            if validar_jugador(control, nombre_jugador):
+                print("\nJugador encontrador ", nombre_jugador) 
+            else:
+                print("Vuelva ha intentarlo") 
+                
+        # Opción 6: Cantidad Aciertos
+        elif int(inputs) == 6:
+            cantidad_tiros(control, nombre_jugador, "made")
+            
+        # Opción 7: Cantidad Aciertos
+        elif int(inputs) == 7:
+            cantidad_tiros(control, nombre_jugador, "missed")
+            
+        # Opción 8: Mejor distancia de tiro
+        elif int(inputs) == 8:
+            mejor_distancia_jugador(control, nombre_jugador)
+                
+        # Opción 10: salir
+        elif int(inputs) == 10:
             working = False
             print("\nGracias por utilizar el programa") 
 

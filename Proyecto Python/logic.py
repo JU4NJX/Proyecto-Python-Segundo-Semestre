@@ -157,3 +157,52 @@ def best_shoot_range_player(catalog):
         resultado[nombre] = (mejor_dist, mejor_contador)
 
     return resultado
+
+def validar_jugador(catalog,nombre_judador):
+    """
+    Busca el nombre del jugador digitado y analiza los datos
+    Parámetros:
+        catalog (list): Lista de diccionarios con datos de tiros.
+
+    Retorna:
+        dict: Diccionario con estructura:
+              {nombre_jugador: (mejor_distancia, aciertos_desde_esa_distancia)}
+    """
+    jugador = {}
+    #Recorre la lista buscando al jugador escrito
+    for jugador in catalog:        
+        if nombre_judador == jugador["player_name"]:
+            return True
+    return False
+
+def cantidad_tiros(catalog, nombre_jugador, resultado_tiro):
+    """
+    Recorre el catalogo y va a contar solamenten los aciertos del jugador
+    
+    """
+    aciertos = 0
+    jugador = {}
+    for jugador in catalog:        
+        if nombre_jugador == jugador["player_name"]:            
+            if jugador["SHOT_RESULT"]== resultado_tiro:
+                aciertos += 1
+    return aciertos
+            
+def mejor_distancia_jugador(catalog, nombre_jugador):
+    aciertos = {}
+    jugador = {}
+    for jugador in catalog:        
+        if nombre_jugador == jugador["player_name"]:
+            if jugador["SHOT_RESULT"]== "made":
+                nombre=jugador["player_name"]
+                dist = jugador["SHOT_DIST"]
+                aciertos[nombre] = {}
+                aciertos[nombre][dist] = (dist)
+                
+    mejor_dist=0
+    
+    for nombre, distancias in aciertos.items():
+        mejor_dist = max(distancias, key=distancias.get) 
+    return mejor_dist
+                
+    

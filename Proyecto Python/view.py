@@ -29,8 +29,7 @@ def print_menu():
     print("6- cantidad de aciertos")
     print("7- cantidad de errados")
     print("8- Ejecutar Mejor Distancia de Tiro del jugador")
-    print("9- Volver al menu principal")
-    print("10- Salir")
+    print("9- Salir")
 
 
 def best_shooters(control):

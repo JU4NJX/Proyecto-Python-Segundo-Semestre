@@ -14,12 +14,17 @@ def new_logic():
     return logic.new_logic()
 
 
+# Creamos el catálogo global del programa (estructura principal de datos)
+control = new_logic()
+
 def print_menu():
     """
     Imprime el menú principal con las opciones disponibles
     para el usuario en la consola.
     """
     print("Bienvenido")
+    print("\nAntes de comenzar el analisis de tiros de la NBA ingrese la opcion 0  para cargar la infomacion")
+    print("Tambien antes de escoger una opcion de la 6 a la 8  seleccione primero la opcion 5 para saber el nombre del jugador,Gracias!") 
     print("0- Cargar información")
     print("1- Ejecutar Mejores Tiradores")
     print("2- Ejecutar Mejores Defensores")
@@ -85,8 +90,7 @@ def best_shoot_range_player(control):
     print(tabulate(filas, headers=["Tirador", "Distancia (Metros)", "Número Tiros"], tablefmt="grid"))
 
 
-# Creamos el catálogo global del programa (estructura principal de datos)
-control = new_logic()
+
 
 def validar_jugador(control, nombre_jugador):
     """ 
@@ -124,7 +128,7 @@ def main():
     nombre_jugador = ""
 
     while working:
-        print_menu()
+        print_menu()     
         inputs = input('Seleccione una opción para continuar\n')
 
         # Opción 0: cargar datos

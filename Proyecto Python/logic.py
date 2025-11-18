@@ -189,6 +189,9 @@ def cantidad_tiros(catalog, nombre_jugador, resultado_tiro):
     return aciertos
             
 def mejor_distancia_jugador(catalog, nombre_jugador):
+    """
+    
+    """
     aciertos = {}
     jugador = {}
     for jugador in catalog:        

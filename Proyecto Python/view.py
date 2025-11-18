@@ -110,7 +110,7 @@ def mejor_distancia_jugador(control,nombre_jugador):
     
     """
     respuesta = logic.mejor_distancia_jugador(control,nombre_jugador)
-    print(f"La mejor distancia de tiro para el jugador {nombre_jugador} es de {respuesta}")    
+    print(f"La mejor distancia de tiro para el jugador {nombre_jugador} es de {respuesta}mts")    
         
     
     
@@ -169,8 +169,8 @@ def main():
         elif int(inputs) == 8:
             mejor_distancia_jugador(control, nombre_jugador)
                 
-        # Opción 10: salir
-        elif int(inputs) == 10:
+        # Opción 9: salir
+        elif int(inputs) == 9:
             working = False
             print("\nGracias por utilizar el programa") 
 
